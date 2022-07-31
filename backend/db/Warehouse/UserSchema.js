@@ -21,6 +21,10 @@ var UserSchema = new schema(
       },
     },
     phone: String,
+    cart: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "CartModel",
+    },
   },
   {
     versionKey: false,
