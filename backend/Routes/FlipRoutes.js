@@ -7,7 +7,23 @@ fliproute.use(bodyParser.json());
 const FlipActions = require("../db/FlipActions");
 
 fliproute.post("/login", (req, res) => {
-  FlipActions.loginUser(req, res);
+  console.log(req.body);
+  let userObj = {
+    email: req.body.email,
+    password: req.body.password,
+  };
+
+  FlipActions.loginUser(userObj, req, res);
+});
+
+fliproute.post("/signup", (req, res) => {
+  console.log(req.body);
+  let userObj = {
+    email: req.body.email,
+    password: req.body.password,
+  };
+
+  FlipActions.SignupUser(userObj, req, res);
 });
 
 fliproute.post("/AddProduct", (req, res) => {
@@ -24,6 +40,10 @@ fliproute.post("/AddProduct", (req, res) => {
   console.log("route", Productobj);
 
   FlipActions.AddProduct(Productobj, req, res);
+});
+
+fliproute.get("/getproducts", (req, res) => {
+  FlipActions.getproducts(req, res);
 });
 
 module.exports = fliproute;
